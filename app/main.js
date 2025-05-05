@@ -7,6 +7,10 @@ import { toggleComplete } from "./completed.js";
 import { playSound } from "./sound.js";
 import { initializeTimeDisplay } from "./time.js";
 
+// to connect to render for deployement
+const backendUrl =
+  "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
+
 //console.log:
 console.log("main.js working!");
 
@@ -67,7 +71,7 @@ window.displayTasks = displayTasks;
 // added this function to fetch tasks from the database
 export async function fetchTasks() {
   try {
-    const response = await fetch("http://127.0.0.1:3000/api/tasks");
+    const response = await fetch(`${backendUrl}/api/tasks`);
     if (response.ok) {
       const tasks = await response.json();
       taskArray.length = 0;

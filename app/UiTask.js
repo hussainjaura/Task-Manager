@@ -23,6 +23,10 @@ const modal = document.getElementById("add-task-modal");
 const addTaskBtn = document.getElementById("add-task-btn");
 const closeModal = document.querySelector(".close-modal");
 
+// to connect to render for deployement
+const backendUrl =
+  "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
+
 // function to clear input fields
 function clearInputs() {
   taskHeader.value = "";
@@ -81,7 +85,7 @@ document.getElementById("add-button").addEventListener("click", async () => {
 
   try {
     // sending a post request to server to add a new task
-    const response = await fetch("http://127.0.0.1:3000/api/tasks", {
+    const response = await fetch(`${backendUrl}/api/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

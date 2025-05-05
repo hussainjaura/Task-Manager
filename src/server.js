@@ -38,7 +38,11 @@ mongoose
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://127.0.0.1:5500", "http://localhost:3000"],
+    origin: [
+      "http://127.0.0.1:5500",
+      "http://localhost:3000",
+      "https://task-manager-hoaa.onrender.com",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type"],
     credentials: true,

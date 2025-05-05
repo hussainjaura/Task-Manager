@@ -9,6 +9,10 @@ import {
 } from "./main.js";
 import { playSound } from "./sound.js";
 
+// to connect to render for deployement
+const backendUrl =
+  "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
+
 // function for toggling star, used for reuseability
 export const toggleStarHandler = async (taskElement) => {
   // passed starredTasks as an argument
@@ -30,20 +34,17 @@ export async function toggleStar(taskArray, taskElement, starredTasksArray) {
 
   try {
     // sending a put request to backend to update the starred state
-    const response = await fetch(
-      `http://127.0.0.1:3000/api/tasks/${task._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // existing tasks and change the starred field from false to true
-        body: JSON.stringify({
-          ...task,
-          starred: !task.starred,
-        }),
-      }
-    );
+    const response = await fetch(`${backendUrl}/api/tasks/${task._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // existing tasks and change the starred field from false to true
+      body: JSON.stringify({
+        ...task,
+        starred: !task.starred,
+      }),
+    });
     // if the task star was successfull update the local state of tasks
     if (response.ok) {
       const updatedTask = await response.json();
