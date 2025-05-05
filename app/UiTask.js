@@ -8,6 +8,7 @@ import {
 } from "./main.js";
 import { showPopup } from "./popup.js";
 import { playSound } from "./sound.js";
+import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
 
 import { createTaskElement } from "./dom.js";
 import { addTask, deleteTask, updateTask } from "./tasks.js";
@@ -27,6 +28,11 @@ const closeModal = document.querySelector(".close-modal");
 const backendUrl =
   "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
 
+// Initialize the Socket.IO client
+window.socket = io(backendUrl, {
+  transports: ["websocket"],
+  withCredentials: true,
+});
 // function to clear input fields
 function clearInputs() {
   taskHeader.value = "";
