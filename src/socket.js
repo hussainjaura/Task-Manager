@@ -5,11 +5,7 @@ export default function setupSocket(server) {
   const io = new Server(server, {
     cors: {
       // to allow connections from these addresses
-      origin: [
-        "http://127.0.0.1:5500",
-        "http://localhost:3000",
-        "https://task-manager-hoaa.onrender.com",
-      ],
+      origin: ["https://task-manager-hoaa.onrender.com"],
       //   allowed methods
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
@@ -30,3 +26,10 @@ export default function setupSocket(server) {
 
   return io;
 }
+
+// use this if programme crashes now
+// origin: [
+//   "http://127.0.0.1:5500",
+//   "http://localhost:3000",
+//   "https://task-manager-hoaa.onrender.com",
+// ],
