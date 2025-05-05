@@ -7,17 +7,10 @@ import {
   starredTasks,
   updateTaskView,
 } from "./main.js";
-import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
 
 // to connect to render for deployement
 const backendUrl =
   "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
-
-// Initialize the Socket.IO client
-window.socket = io(backendUrl, {
-  transports: ["websocket"],
-  withCredentials: true,
-});
 
 //adding tasks to the main task array
 export function addTask(

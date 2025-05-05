@@ -53,7 +53,7 @@
 
     <!-- socket connection / web sockets for real time updation between different windows -->
     <script>
-      const socket = io("http://localhost:3000", {
+      const socket = io("https://task-manager-hoaa.onrender.com", {
         withCredentials: true,
         transports: ["websocket", "polling"],
       });
