@@ -7,11 +7,17 @@ import {
   displayTasks,
 } from "./main.js";
 import { playSound } from "./sound.js";
+import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
 
 // to connect to render for deployement
-const backendUrl = window.location.hostname.includes("localhost")
-  ? "http://localhost:3000"
-  : "https://task-manager-hoaa.onrender.com";
+const backendUrl =
+  "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
+
+// Initialize the Socket.IO client
+window.socket = io(backendUrl, {
+  transports: ["websocket"],
+  withCredentials: true,
+});
 
 // this function toggles the complete task
 export async function toggleComplete(taskArray, taskElement) {
@@ -73,7 +79,3 @@ export async function toggleComplete(taskArray, taskElement) {
     showPopup("Failed to update completion status");
   }
 }
-
-// to connect to render for deployement
-// const backendUrl =
-//   "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
