@@ -9,8 +9,9 @@ import {
 import { playSound } from "./sound.js";
 
 // to connect to render for deployement
-const backendUrl =
-  "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
+const backendUrl = window.location.hostname.includes("localhost")
+  ? "http://localhost:3000"
+  : "https://task-manager-hoaa.onrender.com";
 
 // this function toggles the complete task
 export async function toggleComplete(taskArray, taskElement) {
@@ -72,3 +73,7 @@ export async function toggleComplete(taskArray, taskElement) {
     showPopup("Failed to update completion status");
   }
 }
+
+// to connect to render for deployement
+// const backendUrl =
+//   "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
