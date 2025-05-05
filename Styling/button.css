@@ -1,0 +1,214 @@
+.task-collection p {
+    margin-top: 55px;
+    font-size: 14px;
+    /* line height to improve readability */
+    line-height: 1.5;
+    color: #4b5563;
+    /* allows paragraph to grow inside flex container */
+    flex-grow: 1;
+}
+
+
+.button-container {
+    display: flex;
+    /* to add spacing between buttons */
+    gap: 15px;
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+    /* to center buttons horizontlly */
+    justify-content: center;
+}
+
+/* button styles */
+.delete-button,
+.update-button,
+.star-button,
+.complete-button {
+    flex: 1;
+    width: 40px;
+    height: 40px;
+    border: none;
+    /* border radius for circles */
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    transition: all 0.2s ease;
+    /* to center items vertical and horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* hover effects on buttons */
+.delete-button:hover,
+.update-button:hover,
+.star-button:hover,
+.complete-button:hover {
+    background-color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* active state on buttons */
+.delete-button:active,
+.update-button:active,
+.star-button:active,
+.complete-button:active {
+    transform: scale(0.95);
+}
+
+/* JS class */
+.star-button.starred {
+    color: #333;
+}
+
+.complete-button.completed-task {
+    color: #333;
+}
+
+.task-collection.completed {
+    background-color: #f8fafc;
+    opacity: 0.85;
+}
+
+.task-collection.completed::after {
+    /* add a tick when completed task */
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* center the tick inside box */
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    /* green and lightly transparent tick */
+    color: #10b981;
+    opacity: 0.2;
+    /* should not interact */
+    pointer-events: none;
+}
+
+/* input during update */
+.task-collection input,
+.task-collection select {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* save button styling */
+.save-button {
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+/* hover styling for save */
+.save-button:hover {
+    background-color: #333;
+    /* to lift on hover */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.save-button:active {
+    transform: translateY(0);
+}
+
+.app-container {
+    display: flex;
+    /* full screen height */
+    min-height: 100vh;
+    /* stack vertically */
+    flex-direction: column;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* sidebar Styling */
+.sidebar {
+    width: 100%;
+    background-color: #1a73e8;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    order: 1;
+}
+/* repsponsive ness for smaller screens */
+@media (max-width: 768px){
+    .sidebar{
+        padding: 0;
+    }
+}
+
+
+.main-content {
+    margin-top: 0;
+    padding: 20px;
+    /* fill remaining space */
+    flex: 1;
+    background-color: #f8f9fa;
+    order: 4;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+
+.add-task-container {
+    text-align: center;
+    margin: 20px 0;
+    order: 2;
+}
+/* to add circular add task button */
+.add-task-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+    color: #1a73e8;
+    font-size: 28px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-task-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* responsive styles for larger screens */
+@media (min-width: 769px) {
+    .app-container {
+        flex-direction: row;
+    }
+    
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    
+    .main-content {
+        margin-left: 250px;
+        margin-top: 0;
+    }
+}

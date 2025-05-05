@@ -1,0 +1,149 @@
+.page-header {
+    padding: 35px 0;
+    /* add space below header */
+    margin-bottom: 30px;
+    /* aligns the items in the center */
+    text-align: center;
+    position: relative;
+}
+
+.page-title {
+    /* to add large font size */
+    font-size: 46px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    /* gradient from black to blue */
+    background: linear-gradient(
+        135deg,
+        #000 60%,
+        #1a73e8 60.5%
+    );
+    /* clips background to text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    padding: 20px 40px;
+    margin: 0;
+    margin-top: 10px;
+}
+
+
+/* animated corner lines */
+.page-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid #000;
+    /* slight skew effect added */
+    transform: skew(-3deg);
+    /* smooth transition on hover */
+    transition: transform 0.3s ease;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    /* creates a border 10 px outside the title*/
+    inset: -10px;
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, transparent 30%, #1a73e8 30%, #1a73e8 70%, transparent 70%) 1;
+    /* matcn the skew with ::before so that they are equal */
+    transform: skew(-3deg);
+    /* rotating gradient border animation */
+    animation: borderRotate 4s linear infinite;
+}
+
+
+/* floating lines above and below the header*/
+.page-header::before,
+.page-header::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    /* horizontal blue line */
+    background: linear-gradient(90deg, transparent, #1a73e8, transparent);
+}
+
+/* top floating line */
+.page-header::before {
+    top: 20px;
+    left: 30%;
+    animation: floatLine 3s ease-in-out infinite;
+}
+
+/* bottom floating line */
+.page-header::after {
+    bottom: 20px;
+    right: 30%;
+    animation: floatLine 3s ease-in-out infinite reverse;
+}
+
+/* hover effects */
+.page-title:hover::before {
+    transform: skew(3deg);
+}
+
+/* animations for revealing the title with sliding effect */
+@keyframes titleReveal {
+    from {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+        transform: translateX(-20px);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        transform: translateX(0);
+    }
+}
+
+/* this is for rotation of border gradient */
+@keyframes borderRotate {
+    0% {
+        border-image: linear-gradient(45deg, transparent 30%, #1a73e8 30%, #1a73e8 70%, transparent 70%) 1;
+    }
+    50% {
+        border-image: linear-gradient(225deg, transparent 30%, #1a73e8 30%, #1a73e8 70%, transparent 70%) 1;
+    }
+    100% {
+        border-image: linear-gradient(405deg, transparent 30%, #1a73e8 30%, #1a73e8 70%, transparent 70%) 1;
+    }
+}
+
+/* floating line animation */
+@keyframes floatLine {
+    0%, 100% {
+        transform: translateY(0) scaleX(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(10px) scaleX(1.2);
+        opacity: 1;
+    }
+}
+
+.page-title {
+    animation: titleReveal 0.8s ease-out forwards;
+}
+
+/* add shadow to add depth */
+.page-header {
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 20px 0;
+        margin-top: 30px;
+    }
+    
+    .page-title {
+        font-size: 32px;
+        padding: 15px 30px;
+    }
+}

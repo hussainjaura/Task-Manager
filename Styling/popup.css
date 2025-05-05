@@ -1,0 +1,39 @@
+
+/* popup styling for top right position */
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    /* red for tasks that exceeding limit or where no tasks are avilable etc */
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease-in-out;
+    /* to stack over everything else */
+    z-index: 2000;
+    /* pointer events diabled */
+    pointer-events: none;
+}
+/* when Javascript function calls make popup visible by setting opacity */
+.popup.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* on success for deletion adding starring change color to green */
+.popup.success {
+  background-color: #4CAF50;
+}
+
+/* for my personal phone */
+@media (max-width: 400px) {
+  .popup {
+      padding: 10px 15px;
+      font-size: 14px;
+      right: 10px;
+      top: 10px;
+  }
+}

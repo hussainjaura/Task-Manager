@@ -1,0 +1,93 @@
+/* time styles */
+.time-container {
+    position: relative;
+    width: 89%;
+    /* to add innner spacing */
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* flexbox order positioning */
+    order: 1;
+}
+
+/* time display */
+.time-display {
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 5px;
+    display: flex;
+    /* vertically centering items */
+    align-items: center;
+    /* to add space between clock and time */
+    gap: 10px;
+    /* smooth transition */
+    transition: all 0.3s ease;
+}
+
+.time-icon {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.time-text {
+    font-family: 'Segoe UI', monospace;
+    letter-spacing: 0.5px;
+}
+
+/* date Display */
+.date-display {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+}
+
+/* to add animations when time changes */
+@keyframes timeUpdate {
+    0% { transform: scale(1); }
+    /* to make it larger in middle */
+    50% { transform: scale(1.05); }
+    /* then return to normal */
+    100% { transform: scale(1); }
+}
+
+.time-update {
+    animation: timeUpdate 0.5s ease;
+}
+
+/* hover effect */
+.time-container:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* responsive adjustments for larger screens */
+@media (min-width: 769px) {
+    .time-container {
+        position: absolute;
+        top: 80%;
+        left: 0;
+    }
+}
+
+/* responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .time-display {
+        font-size: 20px;
+    }
+    
+    .date-display {
+        font-size: 12px;
+    }
+    /* removes background for smaller screens as it looks ugly */
+    .time-container{
+        padding: 0;
+        padding-left: 1rem;
+        width: 100%;
+        background: none;
+        backdrop-filter: none;
+        border-top: none;
+        border-bottom: none;
+    }
+} 
