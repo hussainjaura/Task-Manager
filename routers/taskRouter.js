@@ -19,7 +19,6 @@ router.post("/tasks", async (req, res) => {
   try {
     // create and save the task
     const newTask = new Task({ header, description, priority });
-    console.log("Task to Save:", newTask);
     await newTask.save();
     res.status(201).json(newTask);
   } catch (error) {
@@ -71,7 +70,6 @@ router.put("/tasks/:id", async (req, res) => {
 //delete tasks by id
 router.delete("/tasks/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(`Received DELETE request for task with ID: ${id}`);
 
   try {
     const deletedTask = await Task.findByIdAndDelete(id);

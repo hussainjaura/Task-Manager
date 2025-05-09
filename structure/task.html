@@ -59,7 +59,7 @@
       });
 
       socket.on("connect", () => {
-        console.log("Connected to WebSocket server!", socket.id);
+        console.log("Connected to Web Socket!");
       });
 
       socket.on("disconnect", () => {
@@ -67,7 +67,6 @@
       });
 
       socket.on("taskUpdated", (data) => {
-        console.log("Task updated:", data);
         if (window.fetchTasks) {
           window.fetchTasks();
         }
