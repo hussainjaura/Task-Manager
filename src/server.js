@@ -22,7 +22,7 @@ const server = http.createServer(app);
 // web socket
 const io = setupSocket(server);
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 // Connect to MongoDB using mongoose
 mongoose
@@ -38,7 +38,7 @@ mongoose
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://task-manager-hoaa.onrender.com"],
+    origin: ["http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
