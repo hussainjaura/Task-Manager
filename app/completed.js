@@ -8,10 +8,6 @@ import {
 } from "./main.js";
 import { playSound } from "./sound.js";
 
-// to connect to render for deployement
-const backendUrl =
-  "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
-
 // this function toggles the complete task
 export async function toggleComplete(taskArray, taskElement) {
   // get tasks unique id
@@ -27,17 +23,20 @@ export async function toggleComplete(taskArray, taskElement) {
 
   try {
     // send a put request to backend to update task complete status from false to true
-    const response = await fetch(`${backendUrl}/api/tasks/${task._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // include all the tasks and make task from false to true
-      body: JSON.stringify({
-        ...task,
-        completed: !task.completed,
-      }),
-    });
+    const response = await fetch(
+      `http://localhost:3000/api/tasks/${task._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // include all the tasks and make task from false to true
+        body: JSON.stringify({
+          ...task,
+          completed: !task.completed,
+        }),
+      }
+    );
 
     // if response was successfull give task object completed status
     if (response.ok) {

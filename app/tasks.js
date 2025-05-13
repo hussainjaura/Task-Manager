@@ -8,10 +8,6 @@ import {
   updateTaskView,
 } from "./main.js";
 
-// to connect to render for deployement
-const backendUrl =
-  "https://task-manager-hoaa.onrender.com" || "http://127.0.0.1:3000";
-
 //adding tasks to the main task array
 export function addTask(
   taskArray,
@@ -44,7 +40,7 @@ export async function deleteTask(taskArray, taskElement, starredTasksArray) {
   try {
     // send a delete requet to the backend
     const response = await fetch(
-      `${backendUrl}/api/tasks/${taskForDelete._id}`,
+      `http://localhost:3000/api/tasks/${taskForDelete._id}`,
       {
         method: "DELETE",
       }
@@ -142,19 +138,22 @@ export async function updateTask(taskArray, taskElement) {
     }
     // send a put request to the backend to update task
     try {
-      const response = await fetch(`${backendUrl}/api/tasks/${task._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          header: newHeader,
-          description: newDescription,
-          priority: newPriority,
-          starred: task.starred,
-          completed: task.completed,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/tasks/${task._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            header: newHeader,
+            description: newDescription,
+            priority: newPriority,
+            starred: task.starred,
+            completed: task.completed,
+          }),
+        }
+      );
 
       if (response.ok) {
         const updatedTask = await response.json();
