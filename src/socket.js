@@ -26,7 +26,7 @@ export default function setupSocket(server) {
 
   return io;
 }
-
+// important:
 // use this if programme crashes now
 // origin: [
 //   "http://127.0.0.1:5500",
